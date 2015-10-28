@@ -1,6 +1,6 @@
 {
   "name": "conditionerjs",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Conditioner, get rid of those tangled conditions",
   "main": "index.js",
   "directories": {
