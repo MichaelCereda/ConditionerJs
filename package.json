@@ -1,5 +1,5 @@
 {
-  "name": "conditioner",
+  "name": "conditionerjs",
   "version": "0.5.0",
   "description": "Conditioner, get rid of those tangled conditions",
   "main": "index.js",

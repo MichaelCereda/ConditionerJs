@@ -1,5 +1,6 @@
 # ConditionerJs
-#### Conditioner, get rid of those tangled conditions
+> Get rid of those tangled conditions
+
 This tiny library has been specifically created to evaluate conditions in a safe and straightfoward way.
 
 #### Install
@@ -10,7 +11,7 @@ $ npm install conditionerjs
 ```
 
 #### Use
-```
+```javascript
 var conditioner = require('conditionerjs');
 
 //initializing with default options
@@ -24,6 +25,8 @@ console.log(res);
 
 ```
 
+#### Todo
 
-
-
+* Custom operators support
+* Perfomance improvements  
+* More unit tests
