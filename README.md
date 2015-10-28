@@ -1,7 +1,17 @@
 # ConditionerJs
 > Get rid of those tangled conditions
 
+#### What can I do with ConditionerJS?
 This tiny library has been specifically created to evaluate conditions in a safe and straightfoward way.
+
+You can parse every condition with logical or conditional operators that is normally parsed in javascript (please check 'lib/operators' for a complete list).
+
+Examples
+```javascript
+...
+parser.evaluate('a==0 || (b>10 && foo=="bar")')
+...
+```
 
 #### Install
 
@@ -25,8 +35,24 @@ console.log(res);
 
 ```
 
+#### Options (beta)
+
+All the options must be passed during initialization.
+
+```javascript
+var conditioner = require('conditionerjs');
+
+var options = {
+
+}
+var parser = conditioner(options); // add options here
+
+```
+
 #### Todo
 
+* Custom parenthesis support
 * Custom operators support
+* Adding more operators
 * Perfomance improvements  
 * More unit tests
