@@ -1,0 +1,33 @@
+{
+  "name": "conditioner",
+  "version": "0.5.0",
+  "description": "Conditioner, get rid of those tangled conditions",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichaelCereda/ConditionerJs"
+  },
+  "keywords": [
+    "ConditionerJs",
+    "condition",
+    "parser"
+  ],
+  "author": "Michael Cereda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MichaelCereda/ConditionerJs/issues"
+  },
+  "scripts": {
+  },
+  "homepage": "https://github.com/MichaelCereda/ConditionerJs#readme"
+}
