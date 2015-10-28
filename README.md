@@ -9,7 +9,7 @@ You can parse every condition with logical or conditional operators that is norm
 Examples
 ```javascript
 ...
-parser.evaluate('a==0 || (b>10 && foo=="bar")')
+parser.evaluate('a==0 || (b>10 && foo=="bar")', {values})
 ...
 ```
 
