@@ -7,6 +7,21 @@ var parser;
 
 var default_operators = require("../lib/operators");
 
+var _makeTest = function(str, vals,res){
+    for (var i=0;i<res.length;i++){
+
+        (function(val, res) {
+            if(typeof val != "object") val = {a: val};
+            it(str + " with " +JSON.stringify(val), function () {
+
+                var result = parser.evaluate(str, val);
+                assert.equal(res, result);
+            });
+        })(vals[i], res[i]);
+    }
+
+}
+
 describe('Warming Up', function() {
     parser = conditioner({});
     //var parser = Conditioner({});
@@ -17,37 +32,36 @@ describe('Warming Up', function() {
 
         var values = {a:true};
 
-        it('a || false', function () {
-            var result = parser.evaluate("a || false", values);
-            assert.equal(true, result);
-        });
+        _makeTest("a || false",
+            [false,    true,    undefined],
+            [false,     true,   false]
+        );
 
-        it('a && false', function () {
-            var result = parser.evaluate("a && false", values);
-            assert.equal(false, result);
-        });
+        _makeTest("a || true",
+            [false,    true, undefined],
+            [true,     true, true]
+        );
 
-        it('!a', function () {
-            var result = parser.evaluate("!a", values);
-            assert.equal(false, result);
-        });
+        _makeTest("a && true",
+            [false,    true],
+            [false,     true]
+        );
+        _makeTest("a && false",
+            [false,    true],
+            [false,     false]
+        );
+
+        _makeTest("!a",
+            [false,    true],
+            [true,     false]
+        );
+
     });
 
     describe('Conditional Operators test', function () {
         //var generic_condition = "a == 10 && (isOk || foo == 'test') || !isOk";
 
-        var _makeTest = function(str, vals,res){
-            for (var i=0;i<res.length;i++){
 
-                (function(val, res) {
-                    it(str + " with a = " +val, function () {
-                        var result = parser.evaluate(str, {a: val});
-                        assert.equal(res, result);
-                    });
-                })(vals[i], res[i]);
-            }
-
-        }
 
 
         _makeTest("a == 3",
@@ -95,6 +109,11 @@ describe('Test', function() {
             isOk : true,
             foo : 'test'
         };
+
+        _makeTest("a == 10 && (isOk || foo == 'test') || !isOk",
+            //{} -> isOk=undefined -> !isOk == true
+            [{},    {a : 10, isOk : true, foo : 'test'}],
+            [true,  true]);
 
         it("a == 10 && (isOk || foo == 'test') || !isOk", function () {
             var result = parser.evaluate("a == 10 && (isOk || foo == 'test') || !isOk", values);
