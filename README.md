@@ -32,7 +32,7 @@ var res = parser.evaluate("a==10",{a:10});
 
 // ... Tadaa!
 console.log(res);
-
+//output: true
 ```
 
 #### Options (beta)

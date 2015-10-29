@@ -75,5 +75,13 @@ describe('Test', function() {
             assert.equal(true, result);
         });
 
+        it("a != 10 && (isOk || foo == 'test') || !isOk", function () {
+            var result = parser.evaluate("a != 10 && (isOk || foo == 'test') || !isOk", {
+                a : 10,
+                isOk : true,
+                foo : 'test'
+            });
+            assert.equal(false, result);
+        });
     });
 });

@@ -37,6 +37,7 @@ module.exports = function(options){
 
     var _evaluate = function(str, values){
         var expression = stringParser.evaluateString(str);
+
         return conditionParser.evaluate(expression, values);
     };
 
