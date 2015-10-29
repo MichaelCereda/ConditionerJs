@@ -5,12 +5,7 @@ var conditioner = require('../index');
 
 var parser;
 
-
-function tracePerformances(fn){
-    var t0 = performance.now();
-    var res = fn()
-    var t1 = performance.now();
-}
+var default_operators = require("../lib/operators");
 
 describe('Warming Up', function() {
     parser = conditioner({});
@@ -41,17 +36,48 @@ describe('Warming Up', function() {
     describe('Conditional Operators test', function () {
         //var generic_condition = "a == 10 && (isOk || foo == 'test') || !isOk";
 
-        var values = {a:true};
+        var _makeTest = function(str, vals,res){
+            for (var i=0;i<res.length;i++){
 
-        it('a == false', function () {
-            var result = parser.evaluate("a == false", values);
-            assert.equal(false, result);
-        });
+                (function(val, res) {
+                    it(str + " with a = " +val, function () {
+                        var result = parser.evaluate(str, {a: val});
+                        assert.equal(res, result);
+                    });
+                })(vals[i], res[i]);
+            }
 
-        it('a != false', function () {
-            var result = parser.evaluate("a != false", values);
-            assert.equal(true, result);
-        });
+        }
+
+
+        _makeTest("a == 3",
+            [-1,    3,      5],
+            [false, true,   false]
+        );
+        _makeTest("a == true",
+            [false,    true],
+            [false,    true]
+        );
+        _makeTest("a != true",
+            [false,    true],
+            [true,    false]
+        );
+        _makeTest("a === 3", [-1,3,5],[false,true,false]);
+        _makeTest("a !== 3", [-1,3,5],[true,false,true]);
+        //_makeTest("a !=== 3", [-1,3,5],[true,false,true]);
+        _makeTest("a >= 3", [-1,3,5],[false,true,true]);
+        _makeTest("a > 3",
+            [-1,    3,      5],
+            [false, false,  true]);
+        _makeTest("a <= 3",
+            [-1,    3,      5],
+            [true, true,  false]);
+        _makeTest("a < 3",
+            [-1,    3,      5],
+            [true, false,  false]);
+        _makeTest("a != 3",
+            [-1,    3,      5],
+            [true, false,  true]);
     });
 });
 
@@ -83,5 +109,6 @@ describe('Test', function() {
             });
             assert.equal(false, result);
         });
+
     });
 });
