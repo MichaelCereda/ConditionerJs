@@ -6,6 +6,8 @@ This tiny library has been specifically created to evaluate conditions in a safe
 
 You can parse every condition with logical or conditional operators that is normally parsed in javascript (please check 'lib/operators' for a complete list).
 
+Conditions are parsed WITHOUT EVAL, and they are completely safe.
+
 Examples
 ```javascript
 ...
@@ -54,5 +56,3 @@ var parser = conditioner(options); // add options here
 * Custom parenthesis support
 * Custom operators support
 * Adding more operators
-* Perfomance improvements  
-* More unit tests
